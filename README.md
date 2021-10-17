@@ -38,7 +38,7 @@
   </p>
   
   <p align="center">
-    An arcade, bullet-hell space sketchbook given life!
+    A Digital Board Game
     <br />
     <a href="https://github.com/SergioMacellani/Influencia/issues">Report Bug</a>
     ·
