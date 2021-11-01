@@ -7,7 +7,7 @@ public class RandomHouses : MonoBehaviour
     public bool autoUpdate;
     public bool autoHouses;
     
-    [SerializeField][Range(0,100)]
+    [SerializeField][Range(0,10)]
     private int HousesPerLine = 3;
     [SerializeField]
     private float HousesDist = 2.88f;
@@ -27,10 +27,11 @@ public class RandomHouses : MonoBehaviour
     
     public void CreateMap()
     {
-        GameObject start = Instantiate(SpecialHouse_Prefab, transform);
-        start.transform.localPosition = StartHousePos;
-        specialHouseLocal.Add(start.GetComponent<SpriteRenderer>());
         
+        GameObject centerSpecial = Instantiate(SpecialHouse_Prefab, transform);
+        centerSpecial.transform.localPosition = middleScreen;
+        specialHouseLocal.Add(centerSpecial.GetComponent<SpriteRenderer>());
+
         Vector2 pos = StartHousePos + (Vector2.up * HousesDist);
         Vector3 rot = Vector3.zero;
         
@@ -57,12 +58,9 @@ public class RandomHouses : MonoBehaviour
                 }
             }
 
-            if (i < 3)
-            {
-                GameObject special = Instantiate(SpecialHouse_Prefab, transform);
-                special.transform.localPosition = pos;
-                specialHouseLocal.Add(special.GetComponent<SpriteRenderer>());
-            }
+            GameObject special = Instantiate(SpecialHouse_Prefab, transform);
+            special.transform.localPosition = pos;
+            specialHouseLocal.Add(special.GetComponent<SpriteRenderer>());
 
             rot -= Vector3.forward * 90;
             pos += HousePosition(i+1,true);
@@ -83,10 +81,10 @@ public class RandomHouses : MonoBehaviour
                 pos += HousePosition(i,false);
             }
         }
+        GameObject start = Instantiate(SpecialHouse_Prefab, transform);
+        start.transform.localPosition = StartHousePos;
+        specialHouseLocal.Add(start.GetComponent<SpriteRenderer>());
         
-        GameObject centerSpecial = Instantiate(SpecialHouse_Prefab, transform);
-        centerSpecial.transform.localPosition = middleScreen;
-        specialHouseLocal.Add(centerSpecial.GetComponent<SpriteRenderer>());
 
         CamSize();
     }
