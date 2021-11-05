@@ -1,35 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RandomHouses : MonoBehaviour
 {
     public bool autoUpdate;
     public bool autoHouses;
+    public bool changeCamSize;
+    public bool debugOn;
     
-    [SerializeField][Range(0,10)]
+    [SerializeField][Range(0,8)]
     private int HousesPerLine = 3;
     [SerializeField]
     private float HousesDist = 2.88f;
     
     public GameObject SpecialHouse_Prefab;
     public GameObject NormalHouse_Prefab;
-    
-    public bool debugOn;
+
     public Sprite spritePlaceHolder;
-    public List<SpriteRenderer> houseLocal;
-    public List<SpriteRenderer> specialHouseLocal;
+    private List<SpriteRenderer> houseLocal = new List<SpriteRenderer>();
+    private List<SpriteRenderer> specialHouseLocal = new List<SpriteRenderer>();
     public List<HouseType> HouseTypes;
-    public List<SpecialHouseType> SpecialHouseType;
+    [SerializeField]
+    private List<SpecialHouseType> SpecialHouseType = new List<SpecialHouseType>(2);
+    [SerializeField]
+    private List<SpecialHouseType> SpecialHouseCornerType = new List<SpecialHouseType>(2);
 
     private Vector2 middleScreen => Vector2.zero;
     public Vector2 StartHousePos => middleScreen - (Vector2.one*(HousesDist*(HousesPerLine+1)));
     
     public void CreateMap()
     {
-        
         GameObject centerSpecial = Instantiate(SpecialHouse_Prefab, transform);
         centerSpecial.transform.localPosition = middleScreen;
+        centerSpecial.name = "Center House";
+        centerSpecial.AddComponent<HouseScript>().HouseDirections = new Quaternion(1,1,1,1);
+        centerSpecial.GetComponent<HouseScript>().IsCenter = true;
         specialHouseLocal.Add(centerSpecial.GetComponent<SpriteRenderer>());
 
         Vector2 pos = StartHousePos + (Vector2.up * HousesDist);
@@ -44,6 +51,7 @@ public class RandomHouses : MonoBehaviour
                     GameObject house = Instantiate(NormalHouse_Prefab, transform);
                     house.transform.localPosition = pos;
                     house.transform.localEulerAngles = rot;
+                    house.AddComponent<HouseScript>();
                     houseLocal.Add(house.GetComponent<SpriteRenderer>());
                     pos += HousePosition(i,true);
                 }
@@ -52,7 +60,9 @@ public class RandomHouses : MonoBehaviour
                 {
                     GameObject middleSpecial = Instantiate(SpecialHouse_Prefab, transform);
                     middleSpecial.transform.localPosition = pos;
-                    middleSpecial.transform.localEulerAngles = rot;
+                    middleSpecial.AddComponent<HouseScript>().IsSpecial = true;
+                    MiddleDirections(i, middleSpecial.GetComponent<HouseScript>());
+                    //middleSpecial.transform.localEulerAngles = rot;
                     specialHouseLocal.Add(middleSpecial.GetComponent<SpriteRenderer>());
                     pos += HousePosition(i,true);
                 }
@@ -60,6 +70,8 @@ public class RandomHouses : MonoBehaviour
 
             GameObject special = Instantiate(SpecialHouse_Prefab, transform);
             special.transform.localPosition = pos;
+            special.AddComponent<HouseScript>().IsSpecial = true;
+            CornersDirections(i, special.GetComponent<HouseScript>());
             specialHouseLocal.Add(special.GetComponent<SpriteRenderer>());
 
             rot -= Vector3.forward * 90;
@@ -77,16 +89,15 @@ public class RandomHouses : MonoBehaviour
                 GameObject house = Instantiate(NormalHouse_Prefab, transform);
                 house.transform.localPosition = pos;
                 house.transform.localEulerAngles = rot;
+                house.AddComponent<HouseScript>();
                 houseLocal.Add(house.GetComponent<SpriteRenderer>());
                 pos += HousePosition(i,false);
             }
         }
-        GameObject start = Instantiate(SpecialHouse_Prefab, transform);
-        start.transform.localPosition = StartHousePos;
-        specialHouseLocal.Add(start.GetComponent<SpriteRenderer>());
-        
 
-        CamSize();
+        
+        if(changeCamSize)
+            CamSize();
     }
 
     private Vector2 HousePosition(int i, bool normalLine)
@@ -131,6 +142,46 @@ public class RandomHouses : MonoBehaviour
         }
     }
 
+    private void MiddleDirections(int i, HouseScript hs)
+    {
+        if (i == 0)
+        {
+            hs.HouseDirections = new Quaternion(1, 1, 1, 0);
+        }
+        else if (i == 1)
+        {
+            hs.HouseDirections = new Quaternion(0, 1, 1, 1);
+        }
+        else if (i == 2)
+        {
+            hs.HouseDirections = new Quaternion(1, 1, 0, 1);
+        }
+        else
+        {
+            hs.HouseDirections = new Quaternion(1, 0, 1, 1);
+        }
+    }
+    
+    private void CornersDirections(int i, HouseScript hs)
+    {
+        if (i == 0)
+        {
+            hs.HouseDirections = new Quaternion(0, 1, 1, 0);
+        }
+        else if (i == 1)
+        {
+            hs.HouseDirections = new Quaternion(0, 1, 0, 1);
+        }
+        else if (i == 2)
+        {
+            hs.HouseDirections = new Quaternion(1, 0, 0, 1);
+        }
+        else
+        {
+            hs.HouseDirections = new Quaternion(1, 0, 1, 0);
+        }
+    }
+
     public void CamSize()
     {
         Camera.main.orthographicSize = (((HousesPerLine+3) * 0.375f)*2) + HousesPerLine*.375f;
@@ -165,33 +216,71 @@ public class RandomHouses : MonoBehaviour
                 if (n > r && lastType != type.Name)
                 {
                     lastType = type.Name;
+                    if (type.Name == "Green")
+                        house.GetComponent<HouseScript>().HaveCard = true;
                     break;
                 }
             }
         }
 
-        for (int i = 1; i < specialHouseLocal.Count; i++)
-        {
-            int r = Random.Range(0, 101);
-            float n = 0;
-            foreach (var type in SpecialHouseType)
-            {
-                specialHouseLocal[i].sprite = type.HouseSprite;
-                specialHouseLocal[i].gameObject.name = type.Name;
-                n += type.RarityValue;
-                if (n > r && lastType != type.Name)
-                {
-                    lastType = type.Name;
-                    break;
-                }
-            }
-        }
-
+        SpecialHouseGen(1,SpecialHouseType);
+        SpecialHouseCornerGen(2, SpecialHouseCornerType.OrderBy(house => Random.Range(0,2)).ToList());
+        
         if (debugOn)
         {
             foreach (var house in houseLocal)
             {
                 Debug.Log(house.gameObject.name);
+            }
+        }
+    }
+
+    private void SpecialHouseGen(int i, List<SpecialHouseType> SPT)
+    {
+        foreach (var type in SPT)
+        {
+            if (Random.Range(0, 2) < 1)
+            {
+                specialHouseLocal[i].sprite = type.HouseSprite;
+                specialHouseLocal[i].gameObject.name = type.HouseName;
+                i += 2;
+                specialHouseLocal[i].sprite = type.AdjacentHouseSprite;
+                specialHouseLocal[i].gameObject.name = type.AdjacentHouseName;
+                i += 2;
+            }
+            else
+            {
+                specialHouseLocal[i].sprite = type.AdjacentHouseSprite;
+                specialHouseLocal[i].gameObject.name = type.AdjacentHouseName;
+                i += 2;
+                specialHouseLocal[i].sprite = type.HouseSprite;
+                specialHouseLocal[i].gameObject.name = type.HouseName;
+                i += 2;
+            }
+        }
+    }
+    
+    private void SpecialHouseCornerGen(int i, List<SpecialHouseType> SPT)
+    {
+        foreach (var type in SPT)
+        {
+            if (Random.Range(0, 2) < 1)
+            {
+                specialHouseLocal[i].sprite = type.HouseSprite;
+                specialHouseLocal[i].gameObject.name = type.HouseName;
+                i += 4;
+                specialHouseLocal[i].sprite = type.AdjacentHouseSprite;
+                specialHouseLocal[i].gameObject.name = type.AdjacentHouseName;
+                i -= 2;
+            }
+            else
+            {
+                specialHouseLocal[i].sprite = type.AdjacentHouseSprite;
+                specialHouseLocal[i].gameObject.name = type.AdjacentHouseName;
+                i += 4;
+                specialHouseLocal[i].sprite = type.HouseSprite;
+                specialHouseLocal[i].gameObject.name = type.HouseName;
+                i -= 2;
             }
         }
     }
@@ -236,7 +325,8 @@ public struct HouseType
 [System.Serializable]
 public struct SpecialHouseType
 {
-    public string Name;
+    public string HouseName;
     public Sprite HouseSprite;
-    [Range(0, 100)] public float RarityValue;
+    public string AdjacentHouseName;
+    public Sprite AdjacentHouseSprite;
 }
