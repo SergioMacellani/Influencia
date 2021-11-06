@@ -8,6 +8,8 @@ public class HouseScript : MonoBehaviour
     public bool IsSpecial;
     public bool IsCenter;
     public bool HaveCard;
+    public int CardId;
+    public int PlayerInHouse;
     
     [SerializeField][Tooltip("N,S,L,O")]
     private Quaternion houseDirections;

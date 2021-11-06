@@ -37,30 +37,36 @@ public class RandomHouses : MonoBehaviour
         centerSpecial.name = "Center House";
         centerSpecial.AddComponent<HouseScript>().HouseDirections = new Quaternion(1,1,1,1);
         centerSpecial.GetComponent<HouseScript>().IsCenter = true;
+        centerSpecial.GetComponent<HouseScript>().CardId = 0;
         specialHouseLocal.Add(centerSpecial.GetComponent<SpriteRenderer>());
 
         Vector2 pos = StartHousePos + (Vector2.up * HousesDist);
         Vector3 rot = Vector3.zero;
+        int id = 0;
         
         for (int i = 0; i < 4; i++)
         {
             for (int f = 0; f < 2; f++)
             {
+                id++;
+                
                 for (int l = 0; l < HousesPerLine; l++)
                 {
                     GameObject house = Instantiate(NormalHouse_Prefab, transform);
                     house.transform.localPosition = pos;
                     house.transform.localEulerAngles = rot;
-                    house.AddComponent<HouseScript>();
+                    house.AddComponent<HouseScript>().CardId = id;
                     houseLocal.Add(house.GetComponent<SpriteRenderer>());
                     pos += HousePosition(i,true);
+                    id++;
                 }
-                
+
                 if (f == 0)
                 {
                     GameObject middleSpecial = Instantiate(SpecialHouse_Prefab, transform);
                     middleSpecial.transform.localPosition = pos;
                     middleSpecial.AddComponent<HouseScript>().IsSpecial = true;
+                    middleSpecial.GetComponent<HouseScript>().CardId = id;
                     MiddleDirections(i, middleSpecial.GetComponent<HouseScript>());
                     //middleSpecial.transform.localEulerAngles = rot;
                     specialHouseLocal.Add(middleSpecial.GetComponent<SpriteRenderer>());
@@ -71,6 +77,7 @@ public class RandomHouses : MonoBehaviour
             GameObject special = Instantiate(SpecialHouse_Prefab, transform);
             special.transform.localPosition = pos;
             special.AddComponent<HouseScript>().IsSpecial = true;
+            special.GetComponent<HouseScript>().CardId = id;
             CornersDirections(i, special.GetComponent<HouseScript>());
             specialHouseLocal.Add(special.GetComponent<SpriteRenderer>());
 
@@ -86,10 +93,11 @@ public class RandomHouses : MonoBehaviour
             
             for (int l = 0; l < HousesPerLine; l++)
             {
+                id++;
                 GameObject house = Instantiate(NormalHouse_Prefab, transform);
                 house.transform.localPosition = pos;
                 house.transform.localEulerAngles = rot;
-                house.AddComponent<HouseScript>();
+                house.AddComponent<HouseScript>().CardId = id;
                 houseLocal.Add(house.GetComponent<SpriteRenderer>());
                 pos += HousePosition(i,false);
             }

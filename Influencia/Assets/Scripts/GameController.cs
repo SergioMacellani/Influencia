@@ -7,8 +7,12 @@ using Random = UnityEngine.Random;
 public class GameController : MonoBehaviour
 {
     //Detecta todos os objetos que tem a tag "Player" e atribui ao array PlayersInGame
+    public bool AutoPlay;
     public GameObject[] PlayersInGame;
     [SerializeField] private float PlayerWalkSize = 1.152f;
+    [SerializeField] private float PlayerUpSize = 1.425f;
+    [Range(0,2)]
+    [SerializeField] private float PlayerWalkTime = 1;
     private int PlayerSelected = 0;
     private GameObject Player;
     private RaycastHit houseRayPoint = new RaycastHit();
@@ -43,16 +47,18 @@ public class GameController : MonoBehaviour
     IEnumerator PlayerMovement(bool ignoreFirst = false)
     {
         //Move o jogador para a posição do dado
+        HouseScript hs = null;
+        HouseScript hsNext = null;
+        
         for (int i = 1; i <= dice; i++)
         {
-            var position = Player.transform.position + Vector3.up;
-            Physics.Raycast(position, Vector3.down, out houseRayPoint, 10, LayerMask.GetMask("House"));
-            Debug.DrawLine(position, houseRayPoint.point, Color.red);
-            HouseScript hs = houseRayPoint.collider.GetComponent<HouseScript>();
+            hs = HouseRaycast();
             //Debug.Log(hs.IsSpecial);
-            if (!hs.IsSpecial || ignoreFirst )
+            if ((!hs.IsSpecial && !hs.IsCenter) || ignoreFirst )
             {
                 Player.transform.Translate(Vector3.left * PlayerWalkSize);
+                hsNext = HouseRaycast();
+                OtherPlayerInHouse(hsNext);
             }
             else
             {
@@ -60,13 +66,39 @@ public class GameController : MonoBehaviour
                 directions = hs.HouseDirections;
                 choseDirection = true;
                 Debug.Log("Escolha o seu caminho.");
-                break;
+                yield break;
             }
-            ignoreFirst = false;
-            yield return new WaitForSeconds(1);
-        }
 
+            if (i == 1 && hs.PlayerInHouse!=0)
+                hs.PlayerInHouse = 0;
+            
+            ignoreFirst = false;
+            yield return new WaitForSeconds(PlayerWalkTime);
+        }
+        
+        hsNext.PlayerInHouse++;
         NextPlayer();
+    }
+
+    private HouseScript HouseRaycast()
+    {
+        HouseScript hs;
+        Vector3 position;
+        
+        position = Player.transform.position + Vector3.up;
+
+        Physics.Raycast(position, Vector3.down, out houseRayPoint, 10, LayerMask.GetMask("House"));
+        Debug.DrawLine(position, houseRayPoint.point, Color.red);
+        hs = houseRayPoint.collider.GetComponent<HouseScript>();
+        return hs;
+    }
+
+    private void OtherPlayerInHouse(HouseScript hs)
+    {
+        if (hs.PlayerInHouse != 0)
+            Player.transform.Translate(Vector3.up * (hs.PlayerInHouse * PlayerUpSize));
+        else if (Player.transform.position.y > 0)
+            Player.transform.position = new Vector3(Player.transform.position.x, 0, Player.transform.position.z);
     }
 
     private void NextPlayer()
@@ -78,25 +110,46 @@ public class GameController : MonoBehaviour
         }
         else
             PlayerSelected++;
-        
+
         Debug.Log($"Jogador {PlayerSelected+1}");
+        
+        if(AutoPlay)
+            PlayerSelection();
     }
 
     private void ChoseDirection()
     {
         Vector3 rotation = Vector3.up;
 
-        if (Input.GetKeyDown(KeyCode.W) && directions.x == 1)
-            rotation = new Vector3(0,90,0);        
-        
-        if (Input.GetKeyDown(KeyCode.S) && directions.y == 1)
-            rotation = new Vector3(0,270,0);          
-        
-        if (Input.GetKeyDown(KeyCode.D) && directions.z == 1)
-            rotation = new Vector3(0,180,0);           
-        
-        if (Input.GetKeyDown(KeyCode.A) && directions.w == 1)
-            rotation = Vector3.zero;
+        if (!AutoPlay)
+        {
+            if (Input.GetKeyDown(KeyCode.W) && directions.x == 1)
+                rotation = new Vector3(0, 90, 0);
+
+            if (Input.GetKeyDown(KeyCode.S) && directions.y == 1)
+                rotation = new Vector3(0, 270, 0);
+
+            if (Input.GetKeyDown(KeyCode.D) && directions.z == 1)
+                rotation = new Vector3(0, 180, 0);
+
+            if (Input.GetKeyDown(KeyCode.A) && directions.w == 1)
+                rotation = Vector3.zero;
+        }
+        else
+        {
+            int rnd = Random.Range(0, 4);
+            if (rnd == 0 && directions.x == 1)
+                rotation = new Vector3(0, 90, 0);
+
+            if (rnd == 1 && directions.y == 1)
+                rotation = new Vector3(0, 270, 0);
+
+            if (rnd == 2 && directions.z == 1)
+                rotation = new Vector3(0, 180, 0);
+
+            if (rnd == 3 && directions.w == 1)
+                rotation = Vector3.zero;
+        }
 
         if (rotation != Vector3.up)
         {
