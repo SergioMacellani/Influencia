@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class FimDeDiaCard : MonoBehaviour
@@ -21,7 +22,8 @@ public class FimDeDiaCard : MonoBehaviour
     private FimDiaOptions options;
 
     public GameController gm;
-    private void Start()
+    public UnityEvent OnCardEnd;
+    private void OnEnable()
     {
         SetCard();
     }
@@ -68,7 +70,6 @@ public class FimDeDiaCard : MonoBehaviour
             Debug.Log("Errou");
         }
         
-        gm.NextPlayer();
-        transform.parent.gameObject.SetActive(false);
+        OnCardEnd.Invoke();
     }
 }

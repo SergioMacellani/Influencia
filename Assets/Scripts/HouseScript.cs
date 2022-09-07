@@ -19,4 +19,6 @@ public class HouseScript : MonoBehaviour
         get => houseDirections;
         set => houseDirections = value;
     }
+    
+    public Sprite sprite => GetComponent<SpriteRenderer>().sprite;
 }

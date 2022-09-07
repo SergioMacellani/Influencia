@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private float PlayerUpSize = 1.425f;
     [Range(0,2)]
     [SerializeField] private float PlayerWalkTime = 1;
-    private int PlayerSelected = 0;
+    public int PlayerSelected = 0;
     public GameObject PlayerPrefab;
     public Transform PlayerParent;
     private GameObject Player;
@@ -24,12 +24,16 @@ public class GameController : MonoBehaviour
     private bool choseDirection = false;
     private int dice;
     private Quaternion directions;
+    
+    public HouseOpen houseOpen;
 
     public DiceRoll diceRoll;
     public GameObject GreenCard;
     public GameObject GameCardMenu;
     public GameObject FdDCard;
     public GameObject ShopMenu;
+
+    public int desperdicioPoints = 0;
     
     void Start()
     {
@@ -57,11 +61,12 @@ public class GameController : MonoBehaviour
             ChoseDirection();
     }
 
-    void PlayerSelection()
+    public void PlayerSelection()
     {
         //Seleciona o primeiro jogador
         Player = PlayerGameList[PlayerSelected].charObject;
         diceRoll.transform.parent.gameObject.SetActive(true);
+        Debug.Log($"Jogador {PlayerSelected+1}");
     }
 
     public void PlayerMove()
@@ -72,7 +77,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator PlayerMovement(bool ignoreFirst = false)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.2f);
         //Move o jogador para a posição do dado
         HouseScript hs = null;
         HouseScript hsNext = null;
@@ -112,22 +117,20 @@ public class GameController : MonoBehaviour
                 case "Green":
                     GreenCard.SetActive(true);
                     break;
-                case "Blue":
-                    GameCardMenu.SetActive(true);
-                    break;
-                case "Special_Purple":
-                    GameCardMenu.SetActive(true);
-                    break;
-                case "Special_Red":
-                    GameCardMenu.SetActive(true);
-                    break;
                 case "Special_Yellow":
                     ShopMenu.SetActive(true);
                     break;
             }
         }
+        else if(!hsNext.IsCenter)
+        {
+            houseOpen.Detector(hsNext);
+        }
         else
+        {
             NextPlayer();
+        }
+            
     }
 
     private HouseScript HouseRaycast()
@@ -160,12 +163,10 @@ public class GameController : MonoBehaviour
             FdDCard.SetActive(true);
         }
         else
+        {
             PlayerSelected++;
-
-        Debug.Log($"Jogador {PlayerSelected+1}");
-        
-        if(AutoPlay)
             PlayerSelection();
+        }
     }
 
     private void ChoseDirection()
@@ -224,9 +225,25 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //Roda um dado de 6 lados
-    public int RollDice()
+    public void GetInfluencia(int value)
     {
-        return Random.Range(1, 7);
+        PlayerGameList[PlayerSelected].influencia += value;
+        Debug.Log($"Jogador {PlayerSelected+1} - Influencia: {PlayerGameList[PlayerSelected].influencia}");
+    }
+    
+    public void SetDisposicao(int value)
+    {
+        PlayerGameList[PlayerSelected].disposicao += value;
+        Debug.Log($"Jogador {PlayerSelected+1} - Disposição: {PlayerGameList[PlayerSelected].disposicao}");
+    }
+
+    public void SetDesperdicio(int value)
+    {
+        desperdicioPoints += value;
+    }
+
+    public void GetRound()
+    {
+        PlayerSelection();
     }
 }

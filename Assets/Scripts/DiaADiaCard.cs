@@ -16,8 +16,9 @@ public class DiaADiaCard : MonoBehaviour
     [SerializeField] private TextMeshProUGUI option2;
 
     public GameController gm;
+    private bool replayRound = false;
 
-    private void Start()
+    private void OnEnable()
     {
         SetCard();
     }
@@ -25,6 +26,7 @@ public class DiaADiaCard : MonoBehaviour
     private void SetCard()
     {
         dad = data.GetData();
+        replayRound = false;
         timer.SetTimer(timerValue);
         option1.text = dad.option1.GetOption();
         option2.text = dad.option2.GetOption();
@@ -40,15 +42,36 @@ public class DiaADiaCard : MonoBehaviour
         //Esquerda
         if (i == 0)
         {
-            
+            ExecuteStats(dad.option1.stats[0]);
         }
         //Direita
         else
         {
-            
+            ExecuteStats(dad.option2.stats[0]);
         }
         
-        gm.NextPlayer();
         transform.parent.gameObject.SetActive(false);
+    }
+
+    private void ExecuteStats(DaDStats stats)
+    {
+        switch (stats.stats)
+        {
+            case DaDStats.StatsType.Influencia:
+                gm.GetInfluencia(stats.value);
+                break;
+            case DaDStats.StatsType.Desperdicio:
+                gm.SetDesperdicio(stats.value);
+                break;
+            case DaDStats.StatsType.Disposição:
+                gm.SetDisposicao(stats.value);
+                break;
+            case DaDStats.StatsType.Rodada:
+                replayRound = true;
+                break;
+        }
+        
+        if(!replayRound) gm.NextPlayer();
+        else gm.GetRound();
     }
 }

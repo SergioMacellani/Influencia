@@ -24,3 +24,13 @@ MonoBehaviour:
     influencia: 0
     disposicao: 0
     cards: []
+  - charData: {fileID: 11400000, guid: 6b9ec941d5d17424ab2528d6ab146d39, type: 2}
+    charObject: {fileID: 0}
+    influencia: 0
+    disposicao: 0
+    cards: []
+  - charData: {fileID: 11400000, guid: ee2f7f1ee236ed0439b094a9759ce261, type: 2}
+    charObject: {fileID: 0}
+    influencia: 0
+    disposicao: 0
+    cards: []

@@ -9,10 +9,10 @@ using UnityEngine.UI;
 public class TimerUI : MonoBehaviour
 {
     [Header("Values")]
-    [SerializeField] [Range(0, 60)]
+    [SerializeField] [Range(0, 240)]
     private int timerSeconds;
-    [SerializeField] [Range(0, 60)]
-    private int timerValue;
+    [SerializeField] [Range(0, 240)]
+    private int timerValue = 999;
     private float TimerFill => Mathf.Abs(1-((float)timerValue / (float)timerSeconds));
 
     private Vector3 TimerAngle => new Vector3(0, 0, -(TimerFill * 360));
@@ -29,8 +29,16 @@ public class TimerUI : MonoBehaviour
     private TextMeshProUGUI[] timerText;
 
     [SerializeField] private bool onlyShowSeconds = false;
+    [SerializeField] private bool startOnEnable = false;
 
     public UnityEvent OnTimerEnd;
+
+    private void OnEnable()
+    {
+        if(!startOnEnable) return;
+        
+        SetTimer(timerSeconds);
+    }
 
     public void SetTimer(int seconds)
     {

@@ -224,7 +224,7 @@ public class RandomHouses : MonoBehaviour
                 if (n > r && lastType != type.Name)
                 {
                     lastType = type.Name;
-                    if (type.Name != "White")
+                    if (type.Name == "Green")
                         house.GetComponent<HouseScript>().HaveCard = true;
                     break;
                 }
