@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1952287a908318a479bf67dbcb2b05bf, type: 3}
+  m_Name: Player List Data
+  m_EditorClassIdentifier: 
+  index: 0
+  players:
+  - charData: {fileID: 11400000, guid: a57ad592ccba5584c8ce23f7965f3bf9, type: 2}
+    charObject: {fileID: 0}
+    influencia: 0
+    disposicao: 0
+    cards: []
+  - charData: {fileID: 11400000, guid: 5d2ac92f61aca1843bde93bddc4864d9, type: 2}
+    charObject: {fileID: 0}
+    influencia: 0
+    disposicao: 0
+    cards: []

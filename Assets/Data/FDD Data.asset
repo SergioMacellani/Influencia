@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf32897a609d884ab63735ce231c80d, type: 3}
+  m_Name: FDD Data
+  m_EditorClassIdentifier: 
+  data:
+  - title: "VOC\xCA FOI CONVIDADO PARA UMA FESTA E ESTA DIRIGINDO.\nOQUE N\xC3O FAZER"
+    id: 0
+    timer: 60
+    isUsed: 0
+    options:
+    - "N\xE3o ingerir \xE1lcool"
+    - Pedir a um amigo para dirigir
+    - "Ingerir \xE1lcool e dirigir"
+    - "N\xE3o dirigir e ir de Uber"
+    correctOption: 3

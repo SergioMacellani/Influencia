@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7844ef04ec209b246a7dbecab34546ce, type: 3}
+  m_Name: MusicoDisposicao
+  m_EditorClassIdentifier: 
+  type: 1
+  proffession: 0
+  typeIcon: {fileID: 1818449571, guid: 041316c3aac0b6b4abe6ddaa975b9b40, type: 3}
+  proffessionIcon: {fileID: -1499726447, guid: 55c458ae9960a9c47a90ee9fcd97f850, type: 3}
