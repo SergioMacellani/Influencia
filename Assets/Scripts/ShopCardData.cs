@@ -42,11 +42,11 @@ public class ShopCardStatsList
     
     [Space(2f)]
     [Range(0, 5)] 
-    public int Rodada;
+    public int Disposição;
     
     [Space(2f)]
     [Range(0, 5)] 
-    public int Disposição;
+    public int Rodada;
 }
 
 [System.Serializable]

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -164,7 +163,7 @@ public class GameController : MonoBehaviour
             PlayerWin();
             return;
         }
-        else if (desperdicioPoints >= 50)
+        else if (desperdicioPoints >= 20)
         {
             GameOver();
             return;

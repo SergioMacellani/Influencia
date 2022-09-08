@@ -23,3 +23,53 @@ MonoBehaviour:
     - "Ingerir \xE1lcool e dirigir"
     - "N\xE3o dirigir e ir de Uber"
     correctOption: 3
+  - title: "VOC\xCA \xC9 ABORDADO POR UM DESCONHECIDO NA RUA TE OFERECENDO DOCES,
+      OQUE FAZER?"
+    id: 0
+    timer: 60
+    isUsed: 0
+    options:
+    - "Aceitar, pois \xE9 doce de gra\xE7a"
+    - Negar e sair andando
+    - Negar e comunicar a alguem
+    correctOption: 3
+  - title: "UMA PESSOA DESMAIA NA SUA FRENTE, OQUE N\xC3O FAZER?"
+    id: 0
+    timer: 60
+    isUsed: 0
+    options:
+    - "Chamar uma ambul\xE2ncia"
+    - Hidrata-la
+    - Tentar acorda-la
+    - Pedir por ajuda
+    correctOption: 2
+  - title: "SEU AMIGO EST\xC1 TE OBRIGANDO A FAZER ALGO QUE VOC\xCA N\xC3O GOSTA,
+      OQUE FAZER?"
+    id: 0
+    timer: 60
+    isUsed: 0
+    options:
+    - "Fazer, pois \xE9 seu amigo"
+    - Cobrar um favor depois
+    - Bater nele
+    - "Falar que voc\xEA n\xE3o se sente confortavel"
+    correctOption: 4
+  - title: "VOC\xCA RECEBEU UM E-MAIL DE UM SORTEIO QUE VOC\xCA N\xC3O PARTICIPOU."
+    id: 0
+    timer: 60
+    isUsed: 0
+    options:
+    - Abri-lo e aceitar o premio
+    - Deleta-lo
+    correctOption: 2
+  - title: "VOC\xCA EST\xC1 EM UMA FESTA E PERCEBE QUE SEU COPO ESTA COM MAIS LIQUIDO
+      QUE ANTES, OQUE VOC\xCA FAZ?"
+    id: 0
+    timer: 60
+    isUsed: 0
+    options:
+    - Jogo fora o liquido
+    - "Bebo do copo, pois deve ser s\xF3 paranoia"
+    - Cheiro o copo
+    - Pedir para outra pessoa experimentar
+    correctOption: 1

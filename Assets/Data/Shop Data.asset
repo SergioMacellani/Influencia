@@ -16,18 +16,87 @@ MonoBehaviour:
   - title: iBERRY
     icon: {fileID: 753233945, guid: ec39eb96f4827cf4f8eb8cd8d756115c, type: 3}
     levelStats:
-    - Influencia: 0
-      Rodada: 0
+    - Influencia: 2
       "Disposi\xE7\xE3o": 0
+      Rodada: 0
+    - Influencia: 1
+      "Disposi\xE7\xE3o": 0
+      Rodada: 1
+    - Influencia: 2
+      "Disposi\xE7\xE3o": 1
+      Rodada: 1
   - title: WebCam UHRP
     icon: {fileID: 1327574792, guid: 814cdca20aa20084d86ebf76e3011068, type: 3}
     levelStats:
     - Influencia: 0
+      "Disposi\xE7\xE3o": 0
       Rodada: 1
-      "Disposi\xE7\xE3o": 1
-  - title: RT 2090
+    - Influencia: 1
+      "Disposi\xE7\xE3o": 0
+      Rodada: 1
+    - Influencia: 2
+      "Disposi\xE7\xE3o": 0
+      Rodada: 1
+    - Influencia: 1
+      "Disposi\xE7\xE3o": 2
+      Rodada: 1
+  - title: RT 2090 V
     icon: {fileID: -1217386729, guid: 3fd3f48c92c63614aa551f504f7cb55f, type: 3}
     levelStats:
     - Influencia: 1
-      Rodada: 1
+      "Disposi\xE7\xE3o": 0
+      Rodada: 0
+    - Influencia: 2
+      "Disposi\xE7\xE3o": 0
+      Rodada: 0
+    - Influencia: 3
+      "Disposi\xE7\xE3o": 0
+      Rodada: 0
+    - Influencia: 3
       "Disposi\xE7\xE3o": 1
+      Rodada: 0
+    - Influencia: 5
+      "Disposi\xE7\xE3o": 1
+      Rodada: 0
+  - title: Teclado Caizer V
+    icon: {fileID: -1217386729, guid: 3fd3f48c92c63614aa551f504f7cb55f, type: 3}
+    levelStats:
+    - Influencia: 1
+      "Disposi\xE7\xE3o": 0
+      Rodada: 0
+    - Influencia: 1
+      "Disposi\xE7\xE3o": 1
+      Rodada: 0
+    - Influencia: 2
+      "Disposi\xE7\xE3o": 1
+      Rodada: 0
+    - Influencia: 1
+      "Disposi\xE7\xE3o": 2
+      Rodada: 1
+  - title: Fone JLOL
+    icon: {fileID: -1217386729, guid: 3fd3f48c92c63614aa551f504f7cb55f, type: 3}
+    levelStats:
+    - Influencia: 0
+      "Disposi\xE7\xE3o": 2
+      Rodada: 0
+    - Influencia: 0
+      "Disposi\xE7\xE3o": 3
+      Rodada: 0
+    - Influencia: 1
+      "Disposi\xE7\xE3o": 3
+      Rodada: 0
+    - Influencia: 1
+      "Disposi\xE7\xE3o": 3
+      Rodada: 1
+  - title: Monitor Lobitech
+    icon: {fileID: -1217386729, guid: 3fd3f48c92c63614aa551f504f7cb55f, type: 3}
+    levelStats:
+    - Influencia: 1
+      "Disposi\xE7\xE3o": 2
+      Rodada: 0
+    - Influencia: 1
+      "Disposi\xE7\xE3o": 2
+      Rodada: 1
+    - Influencia: 2
+      "Disposi\xE7\xE3o": 3
+      Rodada: 1
