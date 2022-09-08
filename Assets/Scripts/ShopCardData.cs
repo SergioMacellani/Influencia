@@ -37,19 +37,16 @@ public class ShopCardInfo
 [System.Serializable]
 public class ShopCardStatsList
 {
-    public ShopCardStats statsA;
-    [Range(1, 5)] 
-    public int levelA;
+    [Range(0, 5)] 
+    public int Influencia;
     
     [Space(2f)]
-    public ShopCardStats statsB;
-    [Range(1, 5)] 
-    public int levelB;
+    [Range(0, 5)] 
+    public int Rodada;
     
     [Space(2f)]
-    public ShopCardStats statsC;
-    [Range(1, 5)] 
-    public int levelC;
+    [Range(0, 5)] 
+    public int Disposição;
 }
 
 [System.Serializable]

@@ -13,7 +13,7 @@ public class ShopStatsUI : MonoBehaviour
     [SerializeField]
     private Image _typeIcon;
     [SerializeField]
-    private Image _proffessionIcon;
+    private Image _typeIcon2;
     [SerializeField] 
     private TextMeshProUGUI[] _valuesText;
     [SerializeField] 
@@ -31,26 +31,24 @@ public class ShopStatsUI : MonoBehaviour
 
     [SerializeField] 
     private Sprite _typeSprite;
-    [SerializeField] 
-    private Sprite _proffessionSprite;
     
     [SerializeField] 
-    private float[] _valuePos = new float[5] {1, 1.95f, 2.92f, 3.93f, 5};
+    private float[] _valuePos = new float[6] {0, 1, 1.95f, 2.92f, 3.93f, 5};
 
-    public void SetStats(int value, ShopCardStats stats)
+    public void SetStats(int value, Sprite spr)
     {
         _value = value;
-        _typeSprite = stats.typeIcon;
-        _proffessionSprite = stats.proffessionIcon;
+        _typeSprite = spr;
         
         SetStats();
     }
 
     private void SetStats()
     {
-        _slider.value = _valuePos[_value - 1];
+        _slider.value = _valuePos[_value];
+        _fillImage.enabled = _value > 0;
         _typeIcon.sprite = _typeSprite;
-        _proffessionIcon.sprite = _proffessionSprite;
+        _typeIcon2.sprite = _typeSprite;
 
         for (int i = 0; i < 5; i++)
         {

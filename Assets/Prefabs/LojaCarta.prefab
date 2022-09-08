@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 8685757694575352505}
   - component: {fileID: 6266960057723907114}
   - component: {fileID: 3139712978086890862}
+  - component: {fileID: 2681035250756623396}
   m_Layer: 5
   m_Name: LojaCarta
   m_TagString: Untagged
@@ -260,13 +261,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     title: 
-    icon: {fileID: 0}
-    levelStats: []
-  level: 1
+    icon: {fileID: 1895659609, guid: 041316c3aac0b6b4abe6ddaa975b9b40, type: 3}
+    stats:
+      Influencia: 2
+      Rodada: 4
+      "Disposi\xE7\xE3o": 2
   title: {fileID: 2851256504113350920}
   icon: {fileID: 7236399291518204878}
   statsContent: {fileID: 6143742212393937851}
   statsPrefab: {fileID: 2893517234743243596, guid: 234ccd6780bd2754cabe6be5b1439b50, type: 3}
+  icons:
+  - {fileID: 1895659609, guid: 041316c3aac0b6b4abe6ddaa975b9b40, type: 3}
+  - {fileID: -2069147559, guid: 041316c3aac0b6b4abe6ddaa975b9b40, type: 3}
+  - {fileID: 1818449571, guid: 041316c3aac0b6b4abe6ddaa975b9b40, type: 3}
+--- !u!114 &2681035250756623396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5367140174615950518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6266960057723907114}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5800621281663808897
 GameObject:
   m_ObjectHideFlags: 0

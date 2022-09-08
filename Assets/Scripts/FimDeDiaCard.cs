@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -63,7 +64,7 @@ public class FimDeDiaCard : MonoBehaviour
     {
         if (answer == data.correctOption)
         {
-            Debug.Log("Acertou");
+            ChangePosition();
         }
         else
         {
@@ -71,5 +72,23 @@ public class FimDeDiaCard : MonoBehaviour
         }
         
         OnCardEnd.Invoke();
+    }
+
+    private void ChangePosition()
+    {
+        List<PlayerData> pDatas = gm.PlayerGameList;
+        pDatas = pDatas.OrderByDescending(x => x.influencia).ToList();
+        PlayerData top = pDatas[0];
+        PlayerData bottom = pDatas[pDatas.Count - 1];
+        int topValue = top.influencia;
+        
+        top.influencia = bottom.influencia;
+        bottom.influencia = topValue;
+
+        foreach (var player in gm.PlayerGameList)
+        {
+            if(player.charData == top.charData) player.influencia = top.influencia;
+            else if(player.charData == bottom.charData) player.influencia = bottom.influencia;
+        }
     }
 }

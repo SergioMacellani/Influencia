@@ -24,3 +24,36 @@ MonoBehaviour:
       stats:
       - stats: 2
         value: 2
+  - title: Ir ao shopping?
+    option1:
+      option: ir
+      stats:
+      - stats: 1
+        value: 1
+    option2:
+      option: ficar em casa
+      stats:
+      - stats: 2
+        value: 1
+  - title: Responder seus seguidores
+    option1:
+      option: responder
+      stats:
+      - stats: 0
+        value: 2
+    option2:
+      option: trabalhar
+      stats:
+      - stats: 1
+        value: 1
+  - title: Planejar projetos futuros
+    option1:
+      option: planejar
+      stats:
+      - stats: 0
+        value: 1
+    option2:
+      option: descansar
+      stats:
+      - stats: 2
+        value: 2

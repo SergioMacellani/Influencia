@@ -409,7 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slider: {fileID: 835108745388342409}
   _typeIcon: {fileID: 7277366716055479975}
-  _proffessionIcon: {fileID: 8067261688964122188}
+  _typeIcon2: {fileID: 8067261688964122188}
   _valuesText:
   - {fileID: 6491921446862142483}
   - {fileID: 9085587711363940082}
@@ -426,7 +426,6 @@ MonoBehaviour:
   _fillImage: {fileID: 3117926712139576377}
   _value: 1
   _typeSprite: {fileID: 1895659609, guid: 041316c3aac0b6b4abe6ddaa975b9b40, type: 3}
-  _proffessionSprite: {fileID: -1773446352, guid: 55c458ae9960a9c47a90ee9fcd97f850, type: 3}
   _valuePos:
   - 1
   - 1.95
@@ -710,7 +709,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1773446352, guid: 55c458ae9960a9c47a90ee9fcd97f850, type: 3}
+  m_Sprite: {fileID: 1895659609, guid: 041316c3aac0b6b4abe6ddaa975b9b40, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -807,7 +806,7 @@ MonoBehaviour:
   m_MinValue: 1
   m_MaxValue: 5
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 1.95
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

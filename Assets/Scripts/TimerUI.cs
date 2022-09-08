@@ -47,10 +47,14 @@ public class TimerUI : MonoBehaviour
         StartCoroutine(StartTimer());
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateUI();
-        if(timerValue <= 0) OnTimerEnd.Invoke();
+        if (timerValue <= 0)
+        {
+            OnTimerEnd.Invoke();
+            timerValue = 10;
+        }
     }
 
 #if UNITY_EDITOR

@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
-{
-    //Detecta todos os objetos que tem a tag "Player" e atribui ao array PlayersInGame
-    public bool AutoPlay;
+{   
     public PlayerList pList;
     public List<PlayerData> PlayerGameList;
     public PlayerData PlayerNow => PlayerGameList[PlayerSelected];
+    public PlayerData PlayerWinner;
     [SerializeField] private float PlayerWalkSize = 1.152f;
     [SerializeField] private float PlayerUpSize = 1.425f;
     [Range(0,2)]
@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
     public GameObject GameCardMenu;
     public GameObject FdDCard;
     public GameObject ShopMenu;
+    public GameObject GameOverMenu;
+    public GameObject WinnerMenu;
 
     public int desperdicioPoints = 0;
     
@@ -45,11 +47,12 @@ public class GameController : MonoBehaviour
             p.charObject = Instantiate(PlayerPrefab, new Vector3(0, 1.425f*i, 0), transform.rotation);
             p.charObject.GetComponent<Renderer>().material = p.charData.material;
             p.charObject.transform.parent = PlayerParent;
+            p.influencia = 0;
+            p.disposicao = 10;
             i++;
         }
 
         Player = PlayerGameList[0].charObject;
-        Debug.Log($"Jogador 1");
         PlayerSelection();
     }
 
@@ -156,6 +159,17 @@ public class GameController : MonoBehaviour
 
     public void NextPlayer()
     {
+        if (PlayerNow.influencia > 50)
+        {
+            PlayerWin();
+            return;
+        }
+        else if (desperdicioPoints >= 50)
+        {
+            GameOver();
+            return;
+        }
+
         if (PlayerSelected+1 == PlayerGameList.Count)
         {
             PlayerSelected = 0;
@@ -167,6 +181,17 @@ public class GameController : MonoBehaviour
             PlayerSelected++;
             PlayerSelection();
         }
+    }
+
+    private void PlayerWin()
+    {
+        PlayerWinner = PlayerNow;
+        WinnerMenu.SetActive(true);
+    }
+
+    private void GameOver()
+    {
+        GameOverMenu.SetActive(true);
     }
 
     private void ChoseDirection()
@@ -245,5 +270,10 @@ public class GameController : MonoBehaviour
     public void GetRound()
     {
         PlayerSelection();
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

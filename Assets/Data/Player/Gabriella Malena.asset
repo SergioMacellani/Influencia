@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be76790eb0eb6a4cbefdaebc1d35d8a, type: 3}
   m_Name: Gabriella Malena
   m_EditorClassIdentifier: 
-  name: Davi Viniccius
+  name: Gabriella Malena
   material: {fileID: 2100000, guid: edd7c3a4544a606448379a02448482a8, type: 2}
   proffession: 0

@@ -276,18 +276,22 @@ public class RandomHouses : MonoBehaviour
             {
                 specialHouseLocal[i].sprite = type.HouseSprite;
                 specialHouseLocal[i].gameObject.name = type.HouseName;
+                specialHouseLocal[i].GetComponent<HouseScript>().HaveCard = type.HouseName == "Special_Yellow";
                 i += 4;
                 specialHouseLocal[i].sprite = type.AdjacentHouseSprite;
                 specialHouseLocal[i].gameObject.name = type.AdjacentHouseName;
+                specialHouseLocal[i].GetComponent<HouseScript>().HaveCard = type.HouseName == "Special_Yellow";
                 i -= 2;
             }
             else
             {
                 specialHouseLocal[i].sprite = type.AdjacentHouseSprite;
                 specialHouseLocal[i].gameObject.name = type.AdjacentHouseName;
+                specialHouseLocal[i].GetComponent<HouseScript>().HaveCard = type.HouseName == "Special_Yellow";
                 i += 4;
                 specialHouseLocal[i].sprite = type.HouseSprite;
                 specialHouseLocal[i].gameObject.name = type.HouseName;
+                specialHouseLocal[i].GetComponent<HouseScript>().HaveCard = type.HouseName == "Special_Yellow";
                 i -= 2;
             }
         }

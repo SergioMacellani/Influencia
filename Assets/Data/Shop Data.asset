@@ -14,53 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
   - title: iBERRY
-    icon: {fileID: -1773446352, guid: 55c458ae9960a9c47a90ee9fcd97f850, type: 3}
+    icon: {fileID: 753233945, guid: ec39eb96f4827cf4f8eb8cd8d756115c, type: 3}
     levelStats:
-    - statsA: {fileID: 11400000, guid: 9028c3cfd34792c42877d01b6e0bc27b, type: 2}
-      levelA: 1
-      statsB: {fileID: 11400000, guid: 87e5f00dea84b884b85766cdee75828f, type: 2}
-      levelB: 1
-      statsC: {fileID: 11400000, guid: 38a3111afe013b74882b991f261a8e21, type: 2}
-      levelC: 1
-    - statsA: {fileID: 11400000, guid: 9028c3cfd34792c42877d01b6e0bc27b, type: 2}
-      levelA: 2
-      statsB: {fileID: 11400000, guid: 87e5f00dea84b884b85766cdee75828f, type: 2}
-      levelB: 2
-      statsC: {fileID: 11400000, guid: 38a3111afe013b74882b991f261a8e21, type: 2}
-      levelC: 3
-    - statsA: {fileID: 11400000, guid: 9028c3cfd34792c42877d01b6e0bc27b, type: 2}
-      levelA: 3
-      statsB: {fileID: 11400000, guid: 87e5f00dea84b884b85766cdee75828f, type: 2}
-      levelB: 2
-      statsC: {fileID: 11400000, guid: 38a3111afe013b74882b991f261a8e21, type: 2}
-      levelC: 4
-  - title: Canony Mark
-    icon: {fileID: 21300000, guid: a4c1462cdfdda0e4cbd17b5d22061da0, type: 3}
+    - Influencia: 0
+      Rodada: 0
+      "Disposi\xE7\xE3o": 0
+  - title: WebCam UHRP
+    icon: {fileID: 1327574792, guid: 814cdca20aa20084d86ebf76e3011068, type: 3}
     levelStats:
-    - statsA: {fileID: 11400000, guid: 9028c3cfd34792c42877d01b6e0bc27b, type: 2}
-      levelA: 2
-      statsB: {fileID: 11400000, guid: b49b6852c134f754383f2c6f56c67bd3, type: 2}
-      levelB: 1
-      statsC: {fileID: 11400000, guid: 38a3111afe013b74882b991f261a8e21, type: 2}
-      levelC: 1
-    - statsA: {fileID: 11400000, guid: 9028c3cfd34792c42877d01b6e0bc27b, type: 2}
-      levelA: 3
-      statsB: {fileID: 11400000, guid: b49b6852c134f754383f2c6f56c67bd3, type: 2}
-      levelB: 2
-      statsC: {fileID: 11400000, guid: 38a3111afe013b74882b991f261a8e21, type: 2}
-      levelC: 1
-    - statsA: {fileID: 11400000, guid: 9028c3cfd34792c42877d01b6e0bc27b, type: 2}
-      levelA: 3
-      statsB: {fileID: 11400000, guid: b49b6852c134f754383f2c6f56c67bd3, type: 2}
-      levelB: 4
-      statsC: {fileID: 11400000, guid: 38a3111afe013b74882b991f261a8e21, type: 2}
-      levelC: 2
-  - title: BRX 6690 Xi
-    icon: {fileID: 21300000, guid: a4c1462cdfdda0e4cbd17b5d22061da0, type: 3}
+    - Influencia: 0
+      Rodada: 1
+      "Disposi\xE7\xE3o": 1
+  - title: RT 2090
+    icon: {fileID: -1217386729, guid: 3fd3f48c92c63614aa551f504f7cb55f, type: 3}
     levelStats:
-    - statsA: {fileID: 11400000, guid: 9028c3cfd34792c42877d01b6e0bc27b, type: 2}
-      levelA: 3
-      statsB: {fileID: 11400000, guid: 06a2288564feff04482a9e3ad369a68d, type: 2}
-      levelB: 2
-      statsC: {fileID: 11400000, guid: 72488fff0c6fe134993e8822091f5f4b, type: 2}
-      levelC: 2
+    - Influencia: 1
+      Rodada: 1
+      "Disposi\xE7\xE3o": 1
