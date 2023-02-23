@@ -28,7 +28,7 @@
     <img src="https://repository-images.githubusercontent.com/418272808/dfa9c1b1-ac73-4807-acf7-f5cfc2746d6e" alt="Influencia Logo" width="914" height="320">
   </a>
  
-<h3 align="center">Sketch Fleets</h3>
+<h3 align="center">iNfluencia</h3>
   <p align="center">
   <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/SergioMacellani/Influencia">
   <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/SergioMacellani/Influencia">
